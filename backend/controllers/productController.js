@@ -47,9 +47,41 @@ try{
 }
 
 }
-const listProduct = async(req,res)=>{}
+const listProducts = async(req,res)=>{
 
-const removeProduct = async(req,res)=>{}
-const singleProduct= async(req,res)=>{}
+ try{
+ const products = await productModel.find({}) ;
+ res.json({success:true,products}) ;
+ }catch(error){
+  console.log(error) ;
+  res.json({success:false, message:error.message}) ;  // handle server error here  ;
+ }
 
-export {listProduct,singleProduct,removeProduct,addProduct};
+}
+
+const removeProduct = async(req,res)=>{
+    
+    try{
+        await productModel.findByIdAndDelete(req.body.id);
+ res.json({sucess:true, message:"Product Removed"}) ; 
+    }catch(e){
+           console.log(e) ;
+           res.json({success:false, message:e.message}) ;  // handle server error here  ;
+    }
+}
+const singleProduct= async(req,res)=>{
+
+try{
+ const {productId} = req.body ; 
+ const product = await productModel.findById(productId) ;
+  res.json({success:true, product});
+}
+catch(e){
+console.log(e) ; 
+res.json({success:false, message:e.message}) ;
+
+}
+
+}
+
+export {listProducts,singleProduct,removeProduct,addProduct};
