@@ -84,4 +84,4 @@ res.json({success:false, message:e.message}) ;
 
 }
 
-export {listProducts,singleProduct,removeProduct,addProduct};
+export { listProducts, singleProduct, removeProduct, addProduct };
