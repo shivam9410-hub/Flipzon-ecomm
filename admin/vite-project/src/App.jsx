@@ -11,6 +11,7 @@ import Login from './components/Login'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 export const backendUrl='http://localhost:4000'
+export const currency ='$'
 function App() {
 const [token, setToken] =useState(localStorage.getItem('token')??'' );
 
