@@ -8,8 +8,14 @@ if(!token){
 }
 try{
     const token_decode= jwt.verify(token,'greatstack');
-    req.user=token_decode;
-    next();
+    req.body.userId= token_decode.id 
+    next() ;
+}
+catch(error){
+    console.log(error) ; 
+    res.json({success: false, message:error.message}) ;
 }
 
 }
+
+export default  authUser;

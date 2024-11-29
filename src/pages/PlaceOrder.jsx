@@ -8,11 +8,30 @@ const PlaceOrder = () => {
 
 
   const [method, setMethod]= useState('cod') ;
+
+  const [formData, setFormData]= useState({
+    firstname:'',
+    lastname:'',
+    email:'',
+    street:'',
+    city:'',
+    state:'',
+    zipCode:'',
+    country:'',
+    phone:'',
+  })
+const onChangeHandler =(event)=>{
+  const name =event.target.value; 
+  const value= event.target.value;
+  setFormData({...formData, [name]:value}) ;
+
+}
+
   const {navigate} = useContext(ShopContext) ;
 
 
   return (
-    <div className='flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t'>
+    <form className='flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t'>
       {/* left side*/ }
 <div className='flex flex-col gap-4 w-full sm:max-w-[480px]'>
 
@@ -22,7 +41,7 @@ const PlaceOrder = () => {
   <Title text1={'DELIVERY'} text2={'INFORMATION'}/>
 </div>
 <div className='flex gap-3'>
-  <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full ' type="text" placeholder='First Name'/>
+  <input onChange={onChangeHandler}  name='firstname'  value  className='border border-gray-300 rounded py-1.5 px-3.5 w-full ' type="text" placeholder='First Name'/>
   <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full ' type="text" placeholder='Last Name'/>
 
 </div>
@@ -84,7 +103,7 @@ const PlaceOrder = () => {
 
 
 </div>
-    </div>
+    </form>
   )
 }
 
